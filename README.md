@@ -70,6 +70,7 @@ The best 3 values for each test are bold. I'm pretty sure you can detect a patte
 | HttpTreeMux  |  75624 B  |   81408 B  |   7712 B  |   7616 B  |
 | Kocha        | 130336 B  |  811744 B  | 139968 B  | 191632 B  |
 | Martini      | 312592 B  |  579472 B  |  27520 B  |  50608 B  |
+| Macaron      |  51592 B  |  104264 B  |   8264 B  |  13384 B  |
 | Pat          |__21272 B__| __18968 B__| __1448 B__| __2360 B__|
 | TigerTonic   |  85264 B  |   99392 B  |  10576 B  |  11008 B  |
 | Traffic      | 649568 B  | 1124704 B  |  57984 B  |  98168 B  |
@@ -115,19 +116,24 @@ The following benchmarks measure the cost of some very basic operations.
 
 In the first benchmark, only a single route, containing a parameter, is loaded into the routers. Then a request for a URL matching this pattern is made and the router has to call the respective registered handler function. End.
 ```
-BenchmarkBeego_Param                  500000       5495 ns/op        1165 B/op       14 allocs/op
-BenchmarkDenco_Param                 5000000        312 ns/op          50 B/op        2 allocs/op
-BenchmarkGocraftWeb_Param            1000000       1440 ns/op         684 B/op        9 allocs/op
-BenchmarkGoji_Param                  5000000        748 ns/op         340 B/op        2 allocs/op
-BenchmarkGoJsonRest_Param             500000       6980 ns/op        1787 B/op       29 allocs/op
-BenchmarkGorillaMux_Param            1000000       2665 ns/op         780 B/op        7 allocs/op
-BenchmarkHttpRouter_Param           20000000        139 ns/op          33 B/op        1 allocs/op
-BenchmarkHttpTreeMux_Param           5000000        558 ns/op         340 B/op        2 allocs/op
-BenchmarkKocha_Param                 5000000        377 ns/op          58 B/op        2 allocs/op
-BenchmarkMartini_Param                500000       6265 ns/op        1251 B/op       12 allocs/op
-BenchmarkPat_Param                   1000000       1620 ns/op         670 B/op       11 allocs/op
-BenchmarkTigerTonic_Param            1000000       2766 ns/op        1015 B/op       18 allocs/op
-BenchmarkTraffic_Param                500000       4440 ns/op        2013 B/op       22 allocs/op
+BenchmarkBeego_Param	 1000000	      2417 ns/op	     720 B/op	      10 allocs/op
+BenchmarkDenco_Param	 5000000	       270 ns/op	      32 B/op	       1 allocs/op
+BenchmarkGin_Param	 5000000	       257 ns/op	      32 B/op	       1 allocs/op
+BenchmarkGocraftWeb_Param	 1000000	      1851 ns/op	     656 B/op	       9 allocs/op
+BenchmarkGoji_Param	 2000000	       957 ns/op	     336 B/op	       2 allocs/op
+BenchmarkGoJsonRest_Param	  200000	      7064 ns/op	    1712 B/op	      33 allocs/op
+BenchmarkGoRestful_Param	  500000	      3397 ns/op	     568 B/op	      16 allocs/op
+BenchmarkGorillaMux_Param	  500000	      3259 ns/op	     784 B/op	       9 allocs/op
+BenchmarkHttpRouter_Param	10000000	       158 ns/op	      32 B/op	       1 allocs/op
+BenchmarkHttpTreeMux_Param	 2000000	       693 ns/op	     336 B/op	       2 allocs/op
+BenchmarkKocha_Param	 3000000	       429 ns/op	      56 B/op	       3 allocs/op
+BenchmarkMartini_Param	  200000	      6679 ns/op	    1152 B/op	      12 allocs/op
+BenchmarkMacaron_Param	  500000	      3576 ns/op	    1144 B/op	      13 allocs/op
+BenchmarkPat_Param	 1000000	      2008 ns/op	     656 B/op	      14 allocs/op
+BenchmarkRevel_Param	  300000	      5930 ns/op	    1672 B/op	      28 allocs/op
+BenchmarkRivet_Param	 1000000	      1116 ns/op	     464 B/op	       5 allocs/op
+BenchmarkTigerTonic_Param	  500000	      3334 ns/op	     992 B/op	      19 allocs/op
+BenchmarkTraffic_Param	  300000	      5228 ns/op	    1984 B/op	      23 allocs/op
 ```
 
 Same as before, but now with multiple parameters, all in the same single route. The intention is to see how the routers scale with the number of parameters. The values of the parameters must be passed to the handler function somehow, which requires allocations. Let's see how clever the routers solve this task with a route containing 5 and 20 parameters:
