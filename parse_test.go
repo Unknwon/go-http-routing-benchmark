@@ -72,17 +72,11 @@ func init() {
 	calcMem("Beego", func() {
 		parseBeego = loadBeego(parseAPI)
 	})
-	calcMem("Gin", func() {
-		parseGin = loadGin(parseAPI)
-	})
 	calcMem("Goji", func() {
 		parseGoji = loadGoji(parseAPI)
 	})
 	calcMem("GorillaMux", func() {
 		parseGorillaMux = loadGorillaMux(parseAPI)
-	})
-	calcMem("HttpRouter", func() {
-		parseHttpRouter = loadHttpRouter(parseAPI)
 	})
 	calcMem("Martini", func() {
 		parseMartini = loadMartini(parseAPI)
@@ -102,10 +96,6 @@ func BenchmarkBeego_ParseStatic(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/users", nil)
 	benchRequest(b, parseBeego, req)
 }
-func BenchmarkGin_ParseStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/1/users", nil)
-	benchRequest(b, parseGin, req)
-}
 func BenchmarkGoji_ParseStatic(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/users", nil)
 	benchRequest(b, parseGoji, req)
@@ -113,10 +103,6 @@ func BenchmarkGoji_ParseStatic(b *testing.B) {
 func BenchmarkGorillaMux_ParseStatic(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/users", nil)
 	benchRequest(b, parseGorillaMux, req)
-}
-func BenchmarkHttpRouter_ParseStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/1/users", nil)
-	benchRequest(b, parseHttpRouter, req)
 }
 func BenchmarkMartini_ParseStatic(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/users", nil)
@@ -136,10 +122,6 @@ func BenchmarkBeego_ParseParam(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/classes/go", nil)
 	benchRequest(b, parseBeego, req)
 }
-func BenchmarkGin_ParseParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/1/classes/go", nil)
-	benchRequest(b, parseGin, req)
-}
 func BenchmarkGoji_ParseParam(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/classes/go", nil)
 	benchRequest(b, parseGoji, req)
@@ -147,10 +129,6 @@ func BenchmarkGoji_ParseParam(b *testing.B) {
 func BenchmarkGorillaMux_ParseParam(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/classes/go", nil)
 	benchRequest(b, parseGorillaMux, req)
-}
-func BenchmarkHttpRouter_ParseParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/1/classes/go", nil)
-	benchRequest(b, parseHttpRouter, req)
 }
 func BenchmarkMartini_ParseParam(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/classes/go", nil)
@@ -171,10 +149,6 @@ func BenchmarkBeego_Parse2Params(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/classes/go/123456789", nil)
 	benchRequest(b, parseBeego, req)
 }
-func BenchmarkGin_Parse2Params(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/1/classes/go/123456789", nil)
-	benchRequest(b, parseGin, req)
-}
 func BenchmarkGoji_Parse2Params(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/classes/go/123456789", nil)
 	benchRequest(b, parseGoji, req)
@@ -182,10 +156,6 @@ func BenchmarkGoji_Parse2Params(b *testing.B) {
 func BenchmarkGorillaMux_Parse2Params(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/classes/go/123456789", nil)
 	benchRequest(b, parseGorillaMux, req)
-}
-func BenchmarkHttpRouter_Parse2Params(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/1/classes/go/123456789", nil)
-	benchRequest(b, parseHttpRouter, req)
 }
 func BenchmarkMartini_Parse2Params(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/classes/go/123456789", nil)
@@ -204,17 +174,11 @@ func BenchmarkRevel_Parse2Params(b *testing.B) {
 func BenchmarkBeego_ParseAll(b *testing.B) {
 	benchRoutes(b, parseBeego, parseAPI)
 }
-func BenchmarkGin_ParseAll(b *testing.B) {
-	benchRoutes(b, parseGin, parseAPI)
-}
 func BenchmarkGoji_ParseAll(b *testing.B) {
 	benchRoutes(b, parseGoji, parseAPI)
 }
 func BenchmarkGorillaMux_ParseAll(b *testing.B) {
 	benchRoutes(b, parseGorillaMux, parseAPI)
-}
-func BenchmarkHttpRouter_ParseAll(b *testing.B) {
-	benchRoutes(b, parseHttpRouter, parseAPI)
 }
 func BenchmarkMartini_ParseAll(b *testing.B) {
 	benchRoutes(b, parseMartini, parseAPI)

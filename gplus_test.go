@@ -52,17 +52,11 @@ func init() {
 	calcMem("Beego", func() {
 		gplusBeego = loadBeego(gplusAPI)
 	})
-	calcMem("Gin", func() {
-		gplusGin = loadGin(gplusAPI)
-	})
 	calcMem("Goji", func() {
 		gplusGoji = loadGoji(gplusAPI)
 	})
 	calcMem("GorillaMux", func() {
 		gplusGorillaMux = loadGorillaMux(gplusAPI)
-	})
-	calcMem("HttpRouter", func() {
-		gplusHttpRouter = loadHttpRouter(gplusAPI)
 	})
 	calcMem("Martini", func() {
 		gplusMartini = loadMartini(gplusAPI)
@@ -82,10 +76,6 @@ func BenchmarkBeego_GPlusStatic(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people", nil)
 	benchRequest(b, gplusBeego, req)
 }
-func BenchmarkGin_GPlusStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/people", nil)
-	benchRequest(b, gplusGin, req)
-}
 func BenchmarkGoji_GPlusStatic(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people", nil)
 	benchRequest(b, gplusGoji, req)
@@ -93,10 +83,6 @@ func BenchmarkGoji_GPlusStatic(b *testing.B) {
 func BenchmarkGorillaMux_GPlusStatic(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people", nil)
 	benchRequest(b, gplusGorillaMux, req)
-}
-func BenchmarkHttpRouter_GPlusStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/people", nil)
-	benchRequest(b, gplusHttpRouter, req)
 }
 func BenchmarkMartini_GPlusStatic(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people", nil)
@@ -116,10 +102,6 @@ func BenchmarkBeego_GPlusParam(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people/118051310819094153327", nil)
 	benchRequest(b, gplusBeego, req)
 }
-func BenchmarkGin_GPlusParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/people/118051310819094153327", nil)
-	benchRequest(b, gplusGin, req)
-}
 func BenchmarkGoji_GPlusParam(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people/118051310819094153327", nil)
 	benchRequest(b, gplusGoji, req)
@@ -127,10 +109,6 @@ func BenchmarkGoji_GPlusParam(b *testing.B) {
 func BenchmarkGorillaMux_GPlusParam(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people/118051310819094153327", nil)
 	benchRequest(b, gplusGorillaMux, req)
-}
-func BenchmarkHttpRouter_GPlusParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/people/118051310819094153327", nil)
-	benchRequest(b, gplusHttpRouter, req)
 }
 func BenchmarkMartini_GPlusParam(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people/118051310819094153327", nil)
@@ -150,10 +128,6 @@ func BenchmarkBeego_GPlus2Params(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people/118051310819094153327/activities/123456789", nil)
 	benchRequest(b, gplusBeego, req)
 }
-func BenchmarkGin_GPlus2Params(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/people/118051310819094153327/activities/123456789", nil)
-	benchRequest(b, gplusGin, req)
-}
 func BenchmarkGoji_GPlus2Params(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people/118051310819094153327/activities/123456789", nil)
 	benchRequest(b, gplusGoji, req)
@@ -161,10 +135,6 @@ func BenchmarkGoji_GPlus2Params(b *testing.B) {
 func BenchmarkGorillaMux_GPlus2Params(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people/118051310819094153327/activities/123456789", nil)
 	benchRequest(b, gplusGorillaMux, req)
-}
-func BenchmarkHttpRouter_GPlus2Params(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/people/118051310819094153327/activities/123456789", nil)
-	benchRequest(b, gplusHttpRouter, req)
 }
 func BenchmarkMartini_GPlusParam2(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people/118051310819094153327/activities/123456789", nil)
@@ -183,17 +153,11 @@ func BenchmarkRevel_GPlus2Params(b *testing.B) {
 func BenchmarkBeego_GPlusAll(b *testing.B) {
 	benchRoutes(b, gplusBeego, gplusAPI)
 }
-func BenchmarkGin_GPlusAll(b *testing.B) {
-	benchRoutes(b, gplusGin, gplusAPI)
-}
 func BenchmarkGoji_GPlusAll(b *testing.B) {
 	benchRoutes(b, gplusGoji, gplusAPI)
 }
 func BenchmarkGorillaMux_GPlusAll(b *testing.B) {
 	benchRoutes(b, gplusGorillaMux, gplusAPI)
-}
-func BenchmarkHttpRouter_GPlusAll(b *testing.B) {
-	benchRoutes(b, gplusHttpRouter, gplusAPI)
 }
 func BenchmarkMartini_GPlusAll(b *testing.B) {
 	benchRoutes(b, gplusMartini, gplusAPI)

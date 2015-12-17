@@ -196,17 +196,11 @@ func init() {
 	calcMem("Beego", func() {
 		staticBeego = loadBeego(staticRoutes)
 	})
-	calcMem("Gin", func() {
-		staticGin = loadGin(staticRoutes)
-	})
 	calcMem("Goji", func() {
 		staticGoji = loadGoji(staticRoutes)
 	})
 	calcMem("GorillaMux", func() {
 		staticGorillaMux = loadGorillaMux(staticRoutes)
-	})
-	calcMem("HttpRouter", func() {
-		staticHttpRouter = loadHttpRouter(staticRoutes)
 	})
 	calcMem("Martini", func() {
 		staticMartini = loadMartini(staticRoutes)
@@ -228,17 +222,11 @@ func BenchmarkHttpServeMux_StaticAll(b *testing.B) {
 func BenchmarkBeego_StaticAll(b *testing.B) {
 	benchRoutes(b, staticBeego, staticRoutes)
 }
-func BenchmarkGin_StaticAll(b *testing.B) {
-	benchRoutes(b, staticGin, staticRoutes)
-}
 func BenchmarkGoji_StaticAll(b *testing.B) {
 	benchRoutes(b, staticGoji, staticRoutes)
 }
 func BenchmarkGorillaMux_StaticAll(b *testing.B) {
 	benchRoutes(b, staticGorillaMux, staticRoutes)
-}
-func BenchmarkHttpRouter_StaticAll(b *testing.B) {
-	benchRoutes(b, staticHttpRouter, staticRoutes)
 }
 func BenchmarkMartini_StaticAll(b *testing.B) {
 	benchRoutes(b, staticMartini, staticRoutes)
