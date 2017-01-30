@@ -84,9 +84,6 @@ func init() {
 	calcMem("Macaron", func() {
 		parseMacaron = loadMacaron(parseAPI)
 	})
-	calcMem("Revel", func() {
-		parseRevel = loadRevel(parseAPI)
-	})
 
 	println()
 }
@@ -112,10 +109,6 @@ func BenchmarkMacaron_ParseStatic(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/users", nil)
 	benchRequest(b, parseMacaron, req)
 }
-func BenchmarkRevel_ParseStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/1/users", nil)
-	benchRequest(b, parseRevel, req)
-}
 
 // One Param
 func BenchmarkBeego_ParseParam(b *testing.B) {
@@ -139,11 +132,6 @@ func BenchmarkMacaron_ParseParam(b *testing.B) {
 	benchRequest(b, parseMacaron, req)
 }
 
-func BenchmarkRevel_ParseParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/1/classes/go", nil)
-	benchRequest(b, parseRevel, req)
-}
-
 // Two Params
 func BenchmarkBeego_Parse2Params(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/classes/go/123456789", nil)
@@ -165,10 +153,6 @@ func BenchmarkMacaron_Parse2Params(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/1/classes/go/123456789", nil)
 	benchRequest(b, parseMacaron, req)
 }
-func BenchmarkRevel_Parse2Params(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/1/classes/go/123456789", nil)
-	benchRequest(b, parseRevel, req)
-}
 
 // All Routes
 func BenchmarkBeego_ParseAll(b *testing.B) {
@@ -185,7 +169,4 @@ func BenchmarkMartini_ParseAll(b *testing.B) {
 }
 func BenchmarkMacaron_ParseAll(b *testing.B) {
 	benchRoutes(b, parseMacaron, parseAPI)
-}
-func BenchmarkRevel_ParseAll(b *testing.B) {
-	benchRoutes(b, parseRevel, parseAPI)
 }

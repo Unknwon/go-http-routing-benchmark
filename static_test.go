@@ -179,7 +179,6 @@ var (
 	staticHttpRouter http.Handler
 	staticMartini    http.Handler
 	staticMacaron    http.Handler
-	staticRevel      http.Handler
 )
 
 func init() {
@@ -208,9 +207,6 @@ func init() {
 	calcMem("Macaron", func() {
 		staticMacaron = loadMacaron(staticRoutes)
 	})
-	calcMem("Revel", func() {
-		staticRevel = loadRevel(staticRoutes)
-	})
 
 	println()
 }
@@ -233,7 +229,4 @@ func BenchmarkMartini_StaticAll(b *testing.B) {
 }
 func BenchmarkMacaron_StaticAll(b *testing.B) {
 	benchRoutes(b, staticMacaron, staticRoutes)
-}
-func BenchmarkRevel_StaticAll(b *testing.B) {
-	benchRoutes(b, staticRevel, staticRoutes)
 }

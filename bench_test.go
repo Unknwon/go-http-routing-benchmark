@@ -100,13 +100,6 @@ func BenchmarkMacaron_Param(b *testing.B) {
 	benchRequest(b, router, r)
 }
 
-func BenchmarkRevel_Param(b *testing.B) {
-	router := loadRevelSingle("GET", "/user/:name", "RevelController.Handle")
-
-	r, _ := http.NewRequest("GET", "/user/gordon", nil)
-	benchRequest(b, router, r)
-}
-
 // Route with 5 Params (no write)
 const fiveColon = "/:a/:b/:c/:d/:e"
 const fiveBrace = "/{a}/{b}/{c}/{d}/{e}"
@@ -142,13 +135,6 @@ func BenchmarkMartini_Param5(b *testing.B) {
 
 func BenchmarkMacaron_Param5(b *testing.B) {
 	router := loadMacaronSingle("GET", fiveColon, macaronHandler)
-
-	r, _ := http.NewRequest("GET", fiveRoute, nil)
-	benchRequest(b, router, r)
-}
-
-func BenchmarkRevel_Param5(b *testing.B) {
-	router := loadRevelSingle("GET", fiveColon, "RevelController.Handle")
 
 	r, _ := http.NewRequest("GET", fiveRoute, nil)
 	benchRequest(b, router, r)
@@ -194,13 +180,6 @@ func BenchmarkMacaron_Param20(b *testing.B) {
 	benchRequest(b, router, r)
 }
 
-func BenchmarkRevel_Param20(b *testing.B) {
-	router := loadRevelSingle("GET", twentyColon, "RevelController.Handle")
-
-	r, _ := http.NewRequest("GET", twentyRoute, nil)
-	benchRequest(b, router, r)
-}
-
 // Route with Param and write
 func BenchmarkBeego_ParamWrite(b *testing.B) {
 	router := loadBeegoSingle("GET", "/user/:name", beegoHandlerWrite)
@@ -232,13 +211,6 @@ func BenchmarkMartini_ParamWrite(b *testing.B) {
 
 func BenchmarkMacaron_ParamWrite(b *testing.B) {
 	router := loadMacaronSingle("GET", "/user/:name", macaronHandlerWrite)
-
-	r, _ := http.NewRequest("GET", "/user/gordon", nil)
-	benchRequest(b, router, r)
-}
-
-func BenchmarkRevel_ParamWrite(b *testing.B) {
-	router := loadRevelSingle("GET", "/user/:name", "RevelController.HandleWrite")
 
 	r, _ := http.NewRequest("GET", "/user/gordon", nil)
 	benchRequest(b, router, r)

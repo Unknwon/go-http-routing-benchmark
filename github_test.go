@@ -279,7 +279,6 @@ var (
 	githubGorillaMux http.Handler
 	githubMartini    http.Handler
 	githubMacaron    http.Handler
-	githubRevel      http.Handler
 )
 
 func init() {
@@ -299,9 +298,6 @@ func init() {
 	})
 	calcMem("Macaron", func() {
 		githubMacaron = loadMacaron(githubAPI)
-	})
-	calcMem("Revel", func() {
-		githubRevel = loadRevel(githubAPI)
 	})
 
 	println()
@@ -328,10 +324,6 @@ func BenchmarkMacaron_GithubStatic(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/user/repos", nil)
 	benchRequest(b, githubMacaron, req)
 }
-func BenchmarkRevel_GithubStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/user/repos", nil)
-	benchRequest(b, githubRevel, req)
-}
 
 // Param
 func BenchmarkBeego_GithubParam(b *testing.B) {
@@ -354,10 +346,6 @@ func BenchmarkMacaron_GithubParam(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
 	benchRequest(b, githubMacaron, req)
 }
-func BenchmarkRevel_GithubParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/repos/julienschmidt/httprouter/stargazers", nil)
-	benchRequest(b, githubRevel, req)
-}
 
 // All routes
 func BenchmarkBeego_GithubAll(b *testing.B) {
@@ -374,7 +362,4 @@ func BenchmarkMartini_GithubAll(b *testing.B) {
 }
 func BenchmarkMacaron_GithubAll(b *testing.B) {
 	benchRoutes(b, githubMacaron, githubAPI)
-}
-func BenchmarkRevel_GithubAll(b *testing.B) {
-	benchRoutes(b, githubRevel, githubAPI)
 }

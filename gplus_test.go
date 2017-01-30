@@ -43,7 +43,6 @@ var (
 	gplusHttpRouter http.Handler
 	gplusMartini    http.Handler
 	gplusMacaron    http.Handler
-	gplusRevel      http.Handler
 )
 
 func init() {
@@ -63,9 +62,6 @@ func init() {
 	})
 	calcMem("Macaron", func() {
 		gplusMacaron = loadMacaron(gplusAPI)
-	})
-	calcMem("Revel", func() {
-		gplusRevel = loadRevel(gplusAPI)
 	})
 
 	println()
@@ -92,10 +88,6 @@ func BenchmarkMacaron_GPlusStatic(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people", nil)
 	benchRequest(b, gplusMacaron, req)
 }
-func BenchmarkRevel_GPlusStatic(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/people", nil)
-	benchRequest(b, gplusRevel, req)
-}
 
 // One Param
 func BenchmarkBeego_GPlusParam(b *testing.B) {
@@ -117,10 +109,6 @@ func BenchmarkMartini_GPlusParam(b *testing.B) {
 func BenchmarkMacaron_GPlusParam(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people/118051310819094153327", nil)
 	benchRequest(b, gplusMacaron, req)
-}
-func BenchmarkRevel_GPlusParam(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/people/118051310819094153327", nil)
-	benchRequest(b, gplusRevel, req)
 }
 
 // Two Params
@@ -144,10 +132,6 @@ func BenchmarkMacaron_GPlusParam2(b *testing.B) {
 	req, _ := http.NewRequest("GET", "/people/118051310819094153327/activities/123456789", nil)
 	benchRequest(b, gplusMacaron, req)
 }
-func BenchmarkRevel_GPlus2Params(b *testing.B) {
-	req, _ := http.NewRequest("GET", "/people/118051310819094153327/activities/123456789", nil)
-	benchRequest(b, gplusRevel, req)
-}
 
 // All Routes
 func BenchmarkBeego_GPlusAll(b *testing.B) {
@@ -164,7 +148,4 @@ func BenchmarkMartini_GPlusAll(b *testing.B) {
 }
 func BenchmarkMacaron_GPlusAll(b *testing.B) {
 	benchRoutes(b, gplusMacaron, gplusAPI)
-}
-func BenchmarkRevel_GPlusAll(b *testing.B) {
-	benchRoutes(b, gplusRevel, gplusAPI)
 }
